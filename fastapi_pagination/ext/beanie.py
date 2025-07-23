@@ -11,7 +11,7 @@ from beanie.odm.interfaces.aggregate import DocumentProjectionType
 from beanie.odm.queries.aggregation import AggregationQuery
 from beanie.odm.queries.find import FindMany
 from bson.errors import InvalidId
-from motor.motor_asyncio import AsyncIOMotorClientSession
+from pymongo.asynchronous.client_session import AsyncClientSession
 from typing_extensions import deprecated
 
 from fastapi_pagination.api import apply_items_transformer, create_page
@@ -39,7 +39,7 @@ async def apaginate(  # noqa: C901, PLR0912, PLR0915
     additional_data: Optional[AdditionalData] = None,
     projection_model: Optional[type[DocumentProjectionType]] = None,
     sort: Union[None, str, list[tuple[str, SortDirection]]] = None,
-    session: Optional[AsyncIOMotorClientSession] = None,
+    session: Optional[AsyncClientSession] = None,
     ignore_cache: bool = False,
     fetch_links: bool = False,
     lazy_parse: bool = False,
@@ -185,7 +185,7 @@ async def paginate(
     additional_data: Optional[AdditionalData] = None,
     projection_model: Optional[type[DocumentProjectionType]] = None,
     sort: Union[None, str, list[tuple[str, SortDirection]]] = None,
-    session: Optional[AsyncIOMotorClientSession] = None,
+    session: Optional[AsyncClientSession] = None,
     ignore_cache: bool = False,
     fetch_links: bool = False,
     lazy_parse: bool = False,
